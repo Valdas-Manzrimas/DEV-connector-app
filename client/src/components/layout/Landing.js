@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Landing = () => {
     return (
@@ -8,8 +9,8 @@ const Landing = () => {
                 <h1 className="x-large">Developer Connector</h1>
                 <p className="lead">Create developer profile/portfolio, share posts and get help from other developers</p>
                 <div className="buttons">
-                    <a href="register.html" className="btn btn-primary">Sign up</a>
-                    <a href="login.html" className="btn btn-primary">Login</a>
+                    <Link to="/register" className="btn btn-primary">Sign up</Link>
+                    <Link to="/login" className="btn btn-primary">Login</Link>
                 </div>
             </div>
         </div>
