@@ -30,7 +30,7 @@ const Dashboard = ({
             <Link to="/create-profile" className="btn btn-primary my-1">
                 Create Profile
             </Link>
-        </Fragment>};
+        </Fragment>}
     </Fragment>;
 }
 
