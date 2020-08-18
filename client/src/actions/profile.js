@@ -18,14 +18,18 @@ export const getCurrentProfile = () => async dispatch => {
     } catch (err) {
         dispatch({ 
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.response.status, status: err.response.status }
         });
     }
 }
 
 // Create or update profile
 
-export const createProfile = (formData, history, edit = false) => async dispatch => {
+export const createProfile = (
+    formData, 
+    history, 
+    edit = false
+    ) => async dispatch => {
     try {
         const config = { 
             headers: { 
@@ -56,7 +60,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 
         dispatch({ 
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.response.status, status: err.response.status }
         })
     }
 }
