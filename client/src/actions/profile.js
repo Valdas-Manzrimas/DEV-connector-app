@@ -2,14 +2,15 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import { 
     GET_PROFILE,
+    GET_PROFILES,
     UPDATE_PROFILE,
     PROFILE_ERROR,
     DELETE_ACCOUNT,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,
+    GET_REPOS
 } from './types';
 
 // Get current users profile 
-
 export const getCurrentProfile = () => async dispatch => {
     try {
         const res = await axios.get('/api/profile/me');
@@ -24,10 +25,61 @@ export const getCurrentProfile = () => async dispatch => {
             payload: { msg: err.response.status, status: err.response.status }
         });
     }
-}
+};
+
+// Get All Profiles
+export const getProfiles = () => async dispatch => {
+    dispatch({ type: CLEAR_PROFILE });
+    try {
+        const res = await axios.get('/api/profile');
+
+        dispatch({
+            type: GET_PROFILES,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({ 
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.status, status: err.response.status }
+        });
+    }
+};
+
+// Get Profile By Id
+export const getProfileById = userId => async dispatch => {
+    try {
+        const res = await axios.get(`/api/profile/user/${userId}`);
+
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({ 
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.status, status: err.response.status }
+        });
+    }
+};
+
+// Get Github repos
+export const getGithubRepos = username => async dispatch => {
+    try {
+        const res = await axios.get(`/api/profile/github/${username}`);
+
+        dispatch({
+            type: GET_REPOS,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({ 
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.status, status: err.response.status }
+        });
+    }
+};
 
 // Create or update profile
-
 export const createProfile = (
     formData, 
     history, 
@@ -191,3 +243,4 @@ export const deleteAccount = () => async dispatch => {
     }
     
 };
+
