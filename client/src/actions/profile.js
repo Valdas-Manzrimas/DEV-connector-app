@@ -162,7 +162,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
             }
         };
 
-        const res = await axios.put('/api/profile/education', formData, config);
+        const res = await axios.put('api//profile/education', formData, config);
 
         dispatch({
             type: UPDATE_PROFILE,
@@ -228,7 +228,7 @@ export const deleteEducation = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
     if(window.confirm('Are you sure? This can NOT be undone')) {
         try {
-            const res = await axios.delete(`/api/profile/`);
+            await axios.delete(`/api/profile`);
     
             dispatch({ type: CLEAR_PROFILE });
             dispatch({ type: DELETE_ACCOUNT });
